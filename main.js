@@ -41,7 +41,7 @@ keyboard.addEventListener('click',(e)=>{
     }
   
     let symbol = target.textContent
-    if(capsLock === false || undefined){
+    if(capsLock === false){
       screen.innerHTML += symbol
     }
     else if (capsLock === true ){
