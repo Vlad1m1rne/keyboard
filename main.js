@@ -1,10 +1,11 @@
 const screen = document.querySelector('.screen')
 const keyboard = document.querySelector('.keyboard')
 
-
+ let capsLock = false
 
 keyboard.addEventListener('click',(e)=>{
   let target = e.target
+ 
   
   if(target.matches('.keys')){
     if(target.matches('.f,.shift,.fn,.ctrl,.alt')) return
@@ -21,8 +22,18 @@ keyboard.addEventListener('click',(e)=>{
       screen.innerHTML += ' '
       return 
     }
-    
+    if (target.matches('.caps')){
+      if(capsLock === true){
+      capsLock = false
+      return}
+      else {
+        capsLock = true
+        return
+      }
+    }
+  
     let text = Array.from(screen.textContent)
+
     if(target.matches('.back')){
            text.pop()
       screen.innerHTML = text.join('')
@@ -30,7 +41,13 @@ keyboard.addEventListener('click',(e)=>{
     }
   
     let symbol = target.textContent
-    screen.innerHTML += symbol
+    if(capsLock === false || undefined){
+      screen.innerHTML += symbol
+    }
+    else if (capsLock === true ){
+      screen.innerHTML += symbol.toUpperCase()
+
+    }
 
    }
   else return
